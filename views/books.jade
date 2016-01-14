@@ -3,4 +3,9 @@ extends layout
 block content
 
   h1 showing all books. 
-  a(href = 'books/new') add a book
+  each book in books
+    a(href='#{book.amazon_product_url}')
+      img.bookimages(src='#{book.book_image}')
+      span buy book on amazon 
+  
+a(href = 'books/new') add a book

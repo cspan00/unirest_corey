@@ -1,5 +1,9 @@
 var express = require('express');
 var router = express.Router();
+var unirest = require('unirest')
+require('dotenv').load();
+
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -7,7 +11,11 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/books', function(req, res){
-  res.render('books')
+  unirest.get('http://api.nytimes.com/svc/books/v3/lists/hardcover-fiction.json?api-key=' + process.env.NYT_API_KEY)
+    .end(function (response) {
+      res.render('books', {books: response.body.results.books})
+    })
+
 })
 
 router.get('/books/new', function(req, res){
