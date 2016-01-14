@@ -6,6 +6,7 @@ block content
   each book in books
     a(href='#{book.amazon_product_url}')
       img.bookimages(src='#{book.book_image}')
-      span buy book on amazon 
+      span buy book on amazon
+      span Description: #{book.description} 
   
 a(href = 'books/new') add a book
